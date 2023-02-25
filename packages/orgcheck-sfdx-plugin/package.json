@@ -1,0 +1,10 @@
+{
+    "name": "@orgcheck/sfdx-plugin",
+    "version": "2.0.0",
+    "main": "src/index.js",
+    "license": "MIT",
+    "private": true,
+    "dependencies": {
+      "@orgcheck/api": "2.0.0"
+    }
+  }
