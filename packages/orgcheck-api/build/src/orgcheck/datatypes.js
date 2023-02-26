@@ -1,8 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StringUtility = exports.HTMLUtility = void 0;
+exports.ArrayUtility = exports.StringUtility = exports.HTMLUtility = void 0;
 class HTMLUtility {
-    static securise(unsafe) {
+    constructor() {
+    }
+    securise(unsafe) {
         if (unsafe === undefined || Number.isNaN(unsafe) || unsafe === null)
             return '';
         if (typeof (unsafe) !== 'string')
@@ -17,7 +19,9 @@ class HTMLUtility {
 }
 exports.HTMLUtility = HTMLUtility;
 class StringUtility {
-    static format(label, ...params) {
+    constructor() {
+    }
+    format(label, ...params) {
         if (label === undefined)
             return '';
         return label.replace(/{(\d+)}/g, (match, index) => {
@@ -33,7 +37,7 @@ class StringUtility {
             }
         });
     }
-    static percentage(value) {
+    percentage(value) {
         if (value === undefined)
             return '';
         if (value === 0)
@@ -43,7 +47,7 @@ class StringUtility {
             return '';
         return (numValue * 100).toFixed(2) + ' %';
     }
-    static shrink(value, size = 150, appendStr = '...') {
+    shrink(value, size = 150, appendStr = '...') {
         if (value === undefined)
             return '';
         if (value.length > size)
@@ -52,3 +56,44 @@ class StringUtility {
     }
 }
 exports.StringUtility = StringUtility;
+class ArrayUtility {
+    constructor() {
+    }
+    concat(array1, array2, property) {
+        if (property === undefined) {
+            let uniq_items_to_add;
+            if (array1) {
+                uniq_items_to_add = array1.filter((item) => array2.indexOf(item) < 0);
+            }
+            else {
+                uniq_items_to_add = [];
+            }
+            if (array2) {
+                return array2.concat(uniq_items_to_add);
+            }
+            else {
+                return uniq_items_to_add;
+            }
+        }
+        else {
+            let new_array = [];
+            let array2_keys = [];
+            if (array2)
+                for (let i = 0; i < array2.length; i++) {
+                    const item2 = array2[i];
+                    array2_keys.push(item2[property]);
+                    new_array.push(item2);
+                }
+            if (array1)
+                for (let i = 0; i < array1.length; i++) {
+                    const item1 = array1[i];
+                    const key1 = item1[property];
+                    if (array2_keys.indexOf(key1) < 0) {
+                        new_array.push(item1);
+                    }
+                }
+            return new_array;
+        }
+    }
+}
+exports.ArrayUtility = ArrayUtility;
