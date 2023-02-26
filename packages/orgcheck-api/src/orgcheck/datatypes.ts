@@ -24,7 +24,7 @@ export class StringUtility {
                 }
                 return replacementValue;
             } else {
-                throw new Error('format: The label references an index ('+index+') that exceed the params list length ('+params.length+')');
+                throw new Error('format: The label references an index ('+index+') which exceeds the params list length ('+params.length+')');
             }
         });
     }

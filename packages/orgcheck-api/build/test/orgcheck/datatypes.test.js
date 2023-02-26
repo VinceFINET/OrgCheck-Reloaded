@@ -60,6 +60,18 @@ describe('Test the Datatypes module', function () {
             it('should return a string with two substitution values (that are multiple times in the label)', function () {
                 chai_1.default.expect(datatypes_1.StringUtility.format('This {0} is a {1} -- This {0} is a {1} -- This {0} is a {1}', 'one', 'test')).to.be.equal('This one is a test -- This one is a test -- This one is a test');
             });
+            it('should not throw an error if the list of params does not match the references in the label', function () {
+                chai_1.default.expect(datatypes_1.StringUtility.format('This {0} is a {1}', 'one', 'test', 'that')).to.be.equal('This one is a test');
+            });
+            it('should throw an error if the label reference a parameter out of the list', function () {
+                chai_1.default.expect(() => { datatypes_1.StringUtility.format('This {0} is a {5}', 'one', 'test'); }).to.throw('format: The label references an index (5) which exceeds the params list length (2)');
+            });
+            it('should not throw an error if one of the params is undefined but not to be used', function () {
+                chai_1.default.expect(datatypes_1.StringUtility.format('This {0} is a {1}', 'one', 'test', undefined)).to.be.equal('This one is a test');
+            });
+            it('should throw an error if one of the params is undefined and meant to be used at the same time', function () {
+                chai_1.default.expect(() => { datatypes_1.StringUtility.format('This {0} is a {1}', 'one', undefined); }).to.throw('format: The label references an index (1) which value is undefined in the params list');
+            });
         });
         describe('StringUtility.percentage', function () {
             it('should return an empty string if the value is undefined', function () {
