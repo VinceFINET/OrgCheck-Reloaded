@@ -54,7 +54,7 @@ describe('Test the Salesforce module', function () {
   const salesforceMOCK = new MockSOQL();
   salesforceMOCK.setSOQL('org', 'SELECT Id, Name, IsSandbox, OrganizationType, TrialExpirationDate FROM Organization');
 
-  describe('getUserId', function () {
+  describe('Salesforce.getUserId', function () {
     const orgcheck_salesforce: Salesforce = new Salesforce(USER_ID, ACCESS_TOKEN);
     it('should return the current user id', function () {
       const userId = orgcheck_salesforce.getUserId();
@@ -62,7 +62,7 @@ describe('Test the Salesforce module', function () {
     });
   });
 
-  describe('getApiVersion', function () {
+  describe('Salesforce.getApiVersion', function () {
     const orgcheck_salesforce: Salesforce = new Salesforce(USER_ID, ACCESS_TOKEN);
     it('should return a number as api version', function () {
       const api = orgcheck_salesforce.getApiVersion();
@@ -70,7 +70,7 @@ describe('Test the Salesforce module', function () {
     });
   });
 
-  describe('isVersionOld', function () {
+  describe('Salesforce.isVersionOld', function () {
     const orgcheck_salesforce: Salesforce = new Salesforce(USER_ID, ACCESS_TOKEN);
     const currentVersion = orgcheck_salesforce.getApiVersion();
     it('should return that an API is young before it gets 9 releases away', function () {
@@ -85,7 +85,7 @@ describe('Test the Salesforce module', function () {
     });
   });
 
-  describe('getOrganisationId', function () {
+  describe('Salesforce.getOrganisationId', function () {
     const orgcheck_salesforce: Salesforce = new Salesforce(USER_ID, ACCESS_TOKEN);
     it('should return the organization id', function () {
       const orgId = orgcheck_salesforce.getOrganisationId();
@@ -93,7 +93,7 @@ describe('Test the Salesforce module', function () {
     });
   });
 
-  describe('getOrganisationType', function () {
+  describe('Salesforce.getOrganisationType', function () {
     it('should return that organization is a DE', async function () {
       const orgcheck_salesforce: Salesforce = new Salesforce(USER_ID, ACCESS_TOKEN);
       salesforceMOCK.setResult('org', { IsSandbox: false, OrganizationType: 'Developer Edition' });
@@ -132,14 +132,14 @@ describe('Test the Salesforce module', function () {
     });
   });
 
-  describe('safeCaseId', function () {
+  describe('Salesforce.safeCaseId', function () {
     it('should return a safe case 15-long Salesforce id', function () {
       const orgcheck_salesforce: Salesforce = new Salesforce(USER_ID, ACCESS_TOKEN);
       chai.expect(orgcheck_salesforce.safeCaseId(USER_ID)).to.be.lengthOf(15);
     });
   });
 
-  describe('secureSOQLBindingVariable', function() {
+  describe('Salesforce.secureSOQLBindingVariable', function() {
     const orgcheck_salesforce: Salesforce = new Salesforce(USER_ID, ACCESS_TOKEN);
     it('should return an empty string surrounded by quotes if the given value is undefined', function () {
       chai.expect(orgcheck_salesforce.secureSOQLBindingVariable(undefined)).to.be.equal("''");

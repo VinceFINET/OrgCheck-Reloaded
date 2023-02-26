@@ -53,21 +53,21 @@ describe('Test the Salesforce module', function () {
     // Setup the salesforce MOCK
     const salesforceMOCK = new MockSOQL();
     salesforceMOCK.setSOQL('org', 'SELECT Id, Name, IsSandbox, OrganizationType, TrialExpirationDate FROM Organization');
-    describe('getUserId', function () {
+    describe('Salesforce.getUserId', function () {
         const orgcheck_salesforce = new salesforce_1.Salesforce(USER_ID, ACCESS_TOKEN);
         it('should return the current user id', function () {
             const userId = orgcheck_salesforce.getUserId();
             chai_1.default.expect(userId).to.be.equal(USER_ID);
         });
     });
-    describe('getApiVersion', function () {
+    describe('Salesforce.getApiVersion', function () {
         const orgcheck_salesforce = new salesforce_1.Salesforce(USER_ID, ACCESS_TOKEN);
         it('should return a number as api version', function () {
             const api = orgcheck_salesforce.getApiVersion();
             chai_1.default.expect(api).to.be.an('number');
         });
     });
-    describe('isVersionOld', function () {
+    describe('Salesforce.isVersionOld', function () {
         const orgcheck_salesforce = new salesforce_1.Salesforce(USER_ID, ACCESS_TOKEN);
         const currentVersion = orgcheck_salesforce.getApiVersion();
         it('should return that an API is young before it gets 9 releases away', function () {
@@ -81,14 +81,14 @@ describe('Test the Salesforce module', function () {
             }
         });
     });
-    describe('getOrganisationId', function () {
+    describe('Salesforce.getOrganisationId', function () {
         const orgcheck_salesforce = new salesforce_1.Salesforce(USER_ID, ACCESS_TOKEN);
         it('should return the organization id', function () {
             const orgId = orgcheck_salesforce.getOrganisationId();
             chai_1.default.expect(orgId).to.be.equal(ORG_ID);
         });
     });
-    describe('getOrganisationType', function () {
+    describe('Salesforce.getOrganisationType', function () {
         it('should return that organization is a DE', function () {
             return __awaiter(this, void 0, void 0, function* () {
                 const orgcheck_salesforce = new salesforce_1.Salesforce(USER_ID, ACCESS_TOKEN);
@@ -134,13 +134,13 @@ describe('Test the Salesforce module', function () {
             });
         });
     });
-    describe('safeCaseId', function () {
+    describe('Salesforce.safeCaseId', function () {
         it('should return a safe case 15-long Salesforce id', function () {
             const orgcheck_salesforce = new salesforce_1.Salesforce(USER_ID, ACCESS_TOKEN);
             chai_1.default.expect(orgcheck_salesforce.safeCaseId(USER_ID)).to.be.lengthOf(15);
         });
     });
-    describe('secureSOQLBindingVariable', function () {
+    describe('Salesforce.secureSOQLBindingVariable', function () {
         const orgcheck_salesforce = new salesforce_1.Salesforce(USER_ID, ACCESS_TOKEN);
         it('should return an empty string surrounded by quotes if the given value is undefined', function () {
             chai_1.default.expect(orgcheck_salesforce.secureSOQLBindingVariable(undefined)).to.be.equal("''");

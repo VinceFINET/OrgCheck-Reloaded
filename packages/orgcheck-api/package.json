@@ -6,7 +6,8 @@
     "private": true,
     "scripts": {
       "test": "mocha --file ./build/test/test.js",
-      "build": "rm ./build/**/*.js; tsc"
+      "prebuild": "rm ./build/**/*.js",
+      "build": "tsc"
   },
   "devDependencies": {
       "@types/chai": "^4.3.4",
