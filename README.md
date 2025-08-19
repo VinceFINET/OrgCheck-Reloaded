@@ -3,7 +3,7 @@
 OrgCheck is an easy-to-install and easy-to-use "Salesforce application" and a "sfdx plugin" in order to quickly analyze your org and its technical debt.
 
 Here is a presentation of the approach:
-https://sfdc.co.OrgCheck-Presentation
+https://sfdc.co/OrgCheck-Presentation
 
 
 ## Installation of the Salesforce application
